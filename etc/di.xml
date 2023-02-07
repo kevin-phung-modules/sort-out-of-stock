@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+    <virtualType name="additionalFieldsProviderForElasticsearch" type="Magento\AdvancedSearch\Model\Adapter\DataMapper\AdditionalFieldsProvider">
+        <arguments>
+            <argument name="fieldsProviders" xsi:type="array">
+                <item name="stock_status" xsi:type="object">KevinPhung\SortOutOfStock\Model\Adapter\Product\BatchDataMapper\StockStatusFieldsProvider</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Magento\Elasticsearch\Model\Adapter\FieldMapper\Product\FieldProvider\DynamicField">
+        <plugin name="KevinPhungSortOutOfStockLastHelperDataPlugin"
+                type="KevinPhung\SortOutOfStock\Plugin\Elasticsearch\Adapter\FieldMapper\Product\FieldProvider\DynamicField"/>
+    </type>
+
+    <virtualType name="elasticsearchSearchResultApplier\Factory" type="Magento\CatalogSearch\Model\ResourceModel\Fulltext\Collection\SearchResultApplierFactory">
+        <arguments>
+            <argument name="instanceName" xsi:type="string">KevinPhung\SortOutOfStock\Model\ResourceModel\Fulltext\Collection\SearchResultApplier</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Magento\Catalog\Model\Layer">
+        <plugin name="KevinPhungAddSortOutOfStockLastToCollection" type="KevinPhung\SortOutOfStock\Plugin\Catalog\Model\Layer"/>
+    </type>
+    <type name="Magento\Elasticsearch\Model\ResourceModel\Fulltext\Collection\SearchCriteriaResolver">
+        <plugin name="KevinPhungAddSortOutOfStockLastToSearchCriteriaResolver"
+                type="KevinPhung\SortOutOfStock\Plugin\Elasticsearch\Model\ResourceModel\Fulltext\Collection\SearchCriteriaResolver"
+        />
+    </type>
+</config>
