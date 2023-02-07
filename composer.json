@@ -3,10 +3,19 @@
   "version": "1.0.0",
   "description": "Sort product out of stock to last list",
   "type": "magento2-module",
+  "keywords": ["magento", "sort", "sort product", "out of stock"],
   "require": {
-    "php": "~7.3.0||~7.4.0",
+    "php": ">=7.3.0",
     "magento/framework": "103.0.*"
   },
+  "authors": [
+    {
+      "name": "Kevin Phung",
+      "email": "phungvanthucvp@gmail.com",
+      "homepage": "https://github.com/phungvanthuc",
+      "role": "Developer"
+    }
+  ],
   "license": [
       "OSL-3.0",
       "AFL-3.0"
